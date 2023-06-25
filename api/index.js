@@ -15,7 +15,6 @@ const followerRoute = require("./routes/followers.js");
 
 
 const app = express();
-// const port = 3001;
 
 
 // middlewares
