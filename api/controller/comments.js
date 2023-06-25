@@ -18,7 +18,7 @@ const addComment = (req, res) => {
     const token = req.body.token;
     if(!token) return res.status(401).json("user not logged in");
 
-    jwt.verify(token, "secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.secretKey, (err, userInfo) => {
         if(err) return res.status(403).json("token not valid");
 
         const q = "INSERT INTO comments (`descn`, `createdAt`, `commentUId`, `postId`) VALUES (?)";

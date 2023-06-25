@@ -2,6 +2,7 @@
 const db = require("../connection.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 const register = (req, res) => {
     // check if user is already registered
@@ -42,7 +43,7 @@ const login = (req, res) => {
 
         if(!checkPassword) return res.status(400).json("wrong userId or password");
 
-        const token = jwt.sign({id: data[0].uId}, "secretKey");
+        const token = jwt.sign({id: data[0].uId}, process.env.secretKey);
         const { password, ...others } = data[0];
         others["token"] = token;
 

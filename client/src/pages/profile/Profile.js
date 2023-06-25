@@ -13,6 +13,7 @@ import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query';
 
 const Profile = () => {
 
+  const url = "http://localhost:3001/api";
   const { currentUser } = useContext(AuthContext);
   const userId = parseInt(useLocation().pathname.split("/")[2]);
   const navigate = useNavigate();
@@ -22,14 +23,14 @@ const Profile = () => {
         {
             queryKey: ['profileUser', userId],
             queryFn: async () => {
-            return await axios.get("http://localhost:3001/api/users/find?uId="+userId+"&token="+currentUser.token)
+            return await axios.get(url + "/users/find?uId="+userId+"&token="+currentUser.token)
               .then((res) => res.data )
             },
         },
         {
             queryKey: ['followerss'],
             queryFn: async () =>
-            await axios.get("http://localhost:3001/api/follower?token="+currentUser.token)
+            await axios.get(url + "/follower?token="+currentUser.token)
               .then( (res) => res.data  )
         }
     ]
@@ -40,9 +41,9 @@ const queryClient = useQueryClient();
 
 const mutation = useMutation((isFollowed) => {
   if(isFollowed) 
-  return axios.delete("http://localhost:3001/api/follower?token="+currentUser.token+"&followedUId="+userId);
+  return axios.delete(url + "/follower?token="+currentUser.token+"&followedUId="+userId);
   else 
-  return axios.post("http://localhost:3001/api/follower?token="+currentUser.token, {
+  return axios.post(url + "/follower?token="+currentUser.token, {
     "followedUId": userId
   });
 }, {

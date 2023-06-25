@@ -13,21 +13,20 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 const Leftbar = () => {
 
   const { currentUser } = useContext(AuthContext);
-
-  // const { followers, following } = useContext(FollowerContext);
+  const url = "http://localhost:3001/api";
 
   const [myFollowers, meFollowing] = useQueries({
     queries: [
       {
         queryKey: ['followers'],
         queryFn: async () => 
-          await axios.get("http://localhost:3001/api/follower/getMyFollowersDetails?token="+currentUser.token)
+          await axios.get(url + "/follower/getMyFollowersDetails?token="+currentUser.token)
           .then((res) => res.data )
         },
       {
         queryKey: ['following'],
         queryFn: async () => 
-          await axios.get("http://localhost:3001/api/follower?token="+currentUser.token)
+          await axios.get(url + "/follower?token="+currentUser.token)
           .then((res) => res.data )
         }
       ]

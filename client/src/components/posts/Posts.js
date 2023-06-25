@@ -8,10 +8,11 @@ import { useContext } from 'react';
 
 const Posts = ({profileOpen}) => {
 
+    const url = "http://localhost:3001/api";
     const { currentUser } = useContext(AuthContext);
 
     const { isLoading, error, data } = useQuery(['posts'], async () =>
-        axios.get("http://localhost:3001/api/posts?token="+currentUser.token)
+        axios.get(url + "/posts?token="+currentUser.token)
             .then((res) => res.data )
     );
     

@@ -6,12 +6,13 @@ import { Navigate } from "react-router-dom";
 export const AuthContext = createContext();
 export const AuthContextProvider = ({children}) => {
 
+    const url = "http://localhost:3001/api";
     const [currentUser, setCurrentUser] = useState(
         JSON.parse(localStorage.getItem("user")) || null
     );
 
     const login = async (inputs) => {
-        const res = await axios.post("http://localhost:3001/api/auth/login", inputs, {
+        const res = await axios.post(url + "/auth/login", inputs, {
             withCredentials: true
         });
         setCurrentUser(res.data);

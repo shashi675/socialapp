@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UpdateProfile = () => {
 
+    const url = "http://localhost:3001/api";
     const { currentUser, setCurrentUser } = useContext(AuthContext);
     const [values, setValues] = useState({
         name:"",
@@ -23,7 +24,7 @@ const UpdateProfile = () => {
             const formData = new FormData();
             formData.append("file", file);
 
-            const res = await axios.post("http://localhost:3001/api/upload", formData);
+            const res = await axios.post(url + "/upload", formData);
             return res.data;
         } catch(err) {
             console.log(err);
@@ -32,11 +33,11 @@ const UpdateProfile = () => {
 
 
     const mutation = useMutation((userInfo) => {
-        return axios.put("http://localhost:3001/api/users?token="+currentUser.token, userInfo);
+        return axios.put(url + "/users?token="+currentUser.token, userInfo);
     }, {
         onSuccess: async () => {
             // invalidate and refetch:
-            const data = await axios.get("http://localhost:3001/api/users/find?uId="+currentUser.uId+"&token="+currentUser.token)
+            const data = await axios.get(url + "/users/find?uId="+currentUser.uId+"&token="+currentUser.token)
               .then((res) => res.data );
             setCurrentUser({...data, token: currentUser.token});
         },

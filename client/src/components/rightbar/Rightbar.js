@@ -12,10 +12,11 @@ import { FollowerContext } from '../../context/followersContext';
 
 const Rightbar = () => {
 
+  const url = "http://localhost:3001/api";
   const { currentUser } = useContext(AuthContext);
 
   const { data: unFollowers } = useQuery(['unfollowers'], async () => {
-    const res = await axios.get("http://localhost:3001/api/follower/unfollowers?token=" + currentUser.token);
+    const res = await axios.get(url + "/follower/unfollowers?token=" + currentUser.token);
     return res.data;
   });
 
@@ -23,7 +24,7 @@ const Rightbar = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation((userId) => {
-    return axios.post("http://localhost:3001/api/follower?token="+currentUser.token, {
+    return axios.post(url + "/follower?token="+currentUser.token, {
     "followedUId": userId
   });
   },  {

@@ -14,6 +14,7 @@ import { AuthContext } from '../../context/authContext';
 
 const Post = ({ post, profileOpen }) => {
 
+    const url = "http://localhost:3001/api";
     const [commentOpen, setCommentOpen] = useState(false);
     const { currentUser } = useContext(AuthContext);
 
@@ -22,13 +23,13 @@ const Post = ({ post, profileOpen }) => {
             {
                 queryKey: ['likes', post.pId],
                 queryFn: async () =>
-                await axios.get("http://localhost:3001/api/likes?postId="+post.pId)
+                await axios.get(url + "/likes?postId="+post.pId)
                     .then((res) => res.data )
             },
             {
                 queryKey: ['comments', post.pId],
                 queryFn: async () =>
-                await axios.get("http://localhost:3001/api/comments?postId="+post.pId)
+                await axios.get(url + "/comments?postId="+post.pId)
                     .then((res) => res.data )
             }
         ]
@@ -39,9 +40,9 @@ const Post = ({ post, profileOpen }) => {
 
     const mutationLikes = useMutation((isLiked) => {
         if(isLiked) 
-            return axios.delete("http://localhost:3001/api/likes?postId="+post.pId+"&token="+currentUser.token);
+            return axios.delete(url + "/likes?postId="+post.pId+"&token="+currentUser.token);
         else 
-            return axios.post("http://localhost:3001/api/likes", {
+            return axios.post(url + "/likes", {
                 token: currentUser.token,
                 postId: post.pId
             });
@@ -53,7 +54,7 @@ const Post = ({ post, profileOpen }) => {
     })
 
     const mutationComments = useMutation((newComment) => {
-        return axios.post("http://localhost:3001/api/comments?postId=" + post.pId, newComment);
+        return axios.post(url + "/comments?postId=" + post.pId, newComment);
     }, {
         onSuccess: () => {
             // invalidate and refetch:
@@ -62,7 +63,7 @@ const Post = ({ post, profileOpen }) => {
     })
 
     const mutationPosts = useMutation(async (postId) => {
-        return await axios.delete("http://localhost:3001/api/posts?token="+currentUser.token+"&postId="+postId);
+        return await axios.delete(url + "/posts?token="+currentUser.token+"&postId="+postId);
     }, {
         onSuccess: () => {
             // invalidate and refetch:

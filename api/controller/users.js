@@ -1,12 +1,14 @@
 
 const jwt = require("jsonwebtoken");
 const db = require("../connection.js");
+require('dotenv').config();
+
 
 const getUser = (req, res) => {
     const token = req.query.token;
     if(!token) return res.status(401).json("user not logged in");
 
-    jwt.verify(token, "secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.secretKey, (err, userInfo) => {
         if(err) return res.status(403).json("token not valid");
 
         const q = "SELECT * FROM users WHERE `uId` = ?";
@@ -24,7 +26,7 @@ const updateUser = (req, res) => {
     const token = req.query.token;
     if(!token) return res.status(401).json("user not logged in");
 
-    jwt.verify(token, "secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.secretKey, (err, userInfo) => {
         if(err) return res.status(403).json("token not valid");
 
         const q = "UPDATE users SET `name`=?, `city`=?, `language`=?, `profilePic`=?, `coverPic`=? WHERE uId=?";

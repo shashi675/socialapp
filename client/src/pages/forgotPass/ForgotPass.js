@@ -7,6 +7,7 @@ import axios from 'axios';
 
 const ForgotPass = () => {
 
+    const url = "http://localhost:3001/api";
     const [inputs, setInputs] = useState({
         userName: "",
         email: ""
@@ -27,7 +28,7 @@ const ForgotPass = () => {
 
 
     const forgPassword = async (inputs) => {
-        return await axios.get("http://localhost:3001/api/auth/forgetPass?userName=" + inputs.userName + "&email=" + inputs.email);
+        return await axios.get(url + "/auth/forgetPass?userName=" + inputs.userName + "&email=" + inputs.email);
     }
 
     const handleForgotPass = async (e) => {
@@ -59,7 +60,7 @@ const ForgotPass = () => {
             return;
         }
         
-        await axios.put("http://localhost:3001/api/auth", {
+        await axios.put(url + "/auth", {
             password: pass.password,
             userName: inputs.userName
         })

@@ -8,6 +8,7 @@ import axios from 'axios';
 
 const SharePost = () => {
 
+    const url = "http://localhost:3001/api";
     const { currentUser } = useContext(AuthContext);
 
     const [file, setFile] = useState(null);
@@ -16,7 +17,7 @@ const SharePost = () => {
     const queryClient = useQueryClient();
 
     const mutation = useMutation((newPost) => {
-        return axios.post("http://localhost:3001/api/posts", newPost);
+        return axios.post(url + "/posts", newPost);
     }, {
         onSuccess: () => {
             // invalidate and refetch:
@@ -29,7 +30,7 @@ const SharePost = () => {
             const formData = new FormData();
             formData.append("file", file);
 
-            const res = await axios.post("http://localhost:3001/api/upload", formData);
+            const res = await axios.post(url + "/upload", formData);
             return res.data;
         } catch(err) {
             console.log(err);

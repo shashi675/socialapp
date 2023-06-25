@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const Register = () => {
 
+  const url = "http://localhost:3001/api";
   const [inputs, setInputs] = useState({
     userName: "",
     email: "",
@@ -42,7 +43,7 @@ const Register = () => {
     }
 
     try {
-      await axios.post("http://localhost:3001/api/auth/register", inputs);
+      await axios.post(url + "/auth/register", inputs);
       navigate("/login");
     }
     catch(err) {

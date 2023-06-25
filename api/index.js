@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
-require('dotenv').config()
+require('dotenv').config();
 
 const authRoute = require("./routes/auth.js");
 const userRoute = require("./routes/users.js");

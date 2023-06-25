@@ -10,6 +10,7 @@ import { useContext } from 'react';
 
 const Frequests = ({ followers, following }) => {
 
+  const url = "http://localhost:3001/api";
   const { currentUser } = useContext(AuthContext);
 
   const [myFollowers, meFollowing] = useQueries({
@@ -17,13 +18,13 @@ const Frequests = ({ followers, following }) => {
       {
         queryKey: ['followers'],
         queryFn: async () => 
-          await axios.get("http://localhost:3001/api/follower/getMyFollowersDetails?token="+currentUser.token)
+          await axios.get(url + "/follower/getMyFollowersDetails?token="+currentUser.token)
             .then((res) => res.data )
       },
       {
         queryKey: ['following'],
         queryFn: async () => 
-          await axios.get("http://localhost:3001/api/follower?token="+currentUser.token)
+          await axios.get(url + "/follower?token="+currentUser.token)
             .then((res) => res.data )
       }
     ]
@@ -32,7 +33,7 @@ const Frequests = ({ followers, following }) => {
   const queryClient = useQueryClient();
 
   const mutationFollow = useMutation(async (userId) => {
-    return await axios.post("http://localhost:3001/api/follower?token="+currentUser.token, {
+    return await axios.post(url + "/follower?token="+currentUser.token, {
           followedUId: userId
         })
   }, {
@@ -43,7 +44,7 @@ const Frequests = ({ followers, following }) => {
   })
 
   const mutationUnfollow = useMutation(async (userId) => {
-    return await axios.delete("http://localhost:3001/api/follower?token="+currentUser.token+"&followerUId="+userId);
+    return await axios.delete(url + "/follower?token="+currentUser.token+"&followerUId="+userId);
   }, {
     onSuccess: () => {
       // invalidate and refetch:

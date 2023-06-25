@@ -7,12 +7,14 @@ import { useState } from 'react';
 
 
 const Search = () => {
+
+  const url = "http://localhost:3001/api";
     const [searchText, setSearchText] = useState('');
     const [result, setResult] = useState(null);
 
 
     const handleClick = async () => {
-      const data = await axios.get("http://localhost:3001/api/users/search?searchText="+searchText)
+      const data = await axios.get(url + "/users/search?searchText="+searchText)
         .then(res => res.data);
 
       setResult(data);

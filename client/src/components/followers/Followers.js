@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 
 const Followers = () => {
 
+    const url = "http://localhost:3001/api";
+
     const { currentUser } = useContext(AuthContext);
 
     const [myFollowers, meFollowing] = useQueries({
@@ -18,13 +20,13 @@ const Followers = () => {
         {
           queryKey: ['followers'],
           queryFn: async () => 
-            await axios.get("http://localhost:3001/api/follower/getMyFollowersDetails?token="+currentUser.token)
+            await axios.get(url + "/follower/getMyFollowersDetails?token="+currentUser.token)
               .then((res) => res.data )
         },
         {
           queryKey: ['following'],
           queryFn: async () => 
-            await axios.get("http://localhost:3001/api/follower?token="+currentUser.token)
+            await axios.get(url + "/follower?token="+currentUser.token)
               .then((res) => res.data )
         }
       ]
@@ -34,9 +36,9 @@ const Followers = () => {
 
     const mutation = useMutation(async (userId) => {
       if(meFollowing.data.includes(userId))
-        return await axios.delete("http://localhost:3001/api/follower?token="+currentUser.token+"&followedUId="+userId);
+        return await axios.delete(url + "/follower?token="+currentUser.token+"&followedUId="+userId);
       else 
-        return await axios.post("http://localhost:3001/api/follower?token="+currentUser.token, {
+        return await axios.post(url + "/follower?token="+currentUser.token, {
           followedUId: userId
         })
     }, {

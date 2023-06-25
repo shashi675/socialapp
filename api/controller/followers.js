@@ -1,6 +1,7 @@
 
 const jwt = require("jsonwebtoken");
 const db = require("../connection.js");
+require('dotenv').config();
 
 const getFollowingUsers = (req, res) => {
     // those users to whom i am following:
@@ -8,7 +9,7 @@ const getFollowingUsers = (req, res) => {
     const token = req.query.token;
     if(!token) return res.status(401).json("user not logged in");
 
-    jwt.verify(token, "secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.secretKey, (err, userInfo) => {
         if(err) return res.status(403).json("token not valid");
 
         const q = "SELECT followedUId FROM relations WHERE `followerUId` = ?";
@@ -27,7 +28,7 @@ const getFollowingUserDetails = (req, res) => {
     const token = req.query.token;
     if(!token) return res.status(401).json("user not logged in");
 
-    jwt.verify(token, "secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.secretKey, (err, userInfo) => {
         if(err) return res.status(403).json("token not valid");
 
         const q = "SELECT uId AS userId, name, profilePic FROM users WHERE uId IN (SELECT followedUId FROM relations WHERE `followerUId` = ?)";
@@ -46,7 +47,7 @@ const getMyFollowersDetails = (req, res) => {
     const token = req.query.token;
     if(!token) return res.status(401).json("user not logged in");
 
-    jwt.verify(token, "secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.secretKey, (err, userInfo) => {
         if(err) return res.status(403).json("token not valid");
 
         const q = "SELECT uId AS userId, name, profilePic FROM users WHERE uId IN (SELECT followerUId FROM relations WHERE `followedUId` = ?)";
@@ -63,7 +64,7 @@ const getUnFollowers = (req, res) => {
     const token = req.query.token;
     if(!token) return res.status(401).json("user not logged in");
 
-    jwt.verify(token, "secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.secretKey, (err, userInfo) => {
         if(err) return res.status(403).json("token not valid");
 
         const q = "SELECT u.uId AS userId, u.name, u.profilePic FROM users AS u WHERE u.uId NOT IN (SELECT followedUId FROM relations WHERE followerUId = ?) AND u.uId != ? LIMIT 5";
@@ -81,7 +82,7 @@ const setFollower = (req, res) => {
     const token = req.query.token;
     if(!token) return res.status(401).json("user not logged in");
 
-    jwt.verify(token, "secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.secretKey, (err, userInfo) => {
         if(err) return res.status(403).json("token not valid");
 
         const q = "INSERT INTO relations (`followerUId`, `followedUId`) VALUES (?)";
@@ -100,7 +101,7 @@ const deleteFollower = (req, res) => {
     const token = req.query.token;
     if(!token) return res.status(401).json("user not logged in");
 
-    jwt.verify(token, "secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.secretKey, (err, userInfo) => {
         if(err) return res.status(403).json("token not valid");
 
         const q = "DELETE FROM relations WHERE followerUId = ? AND followedUId = ?";

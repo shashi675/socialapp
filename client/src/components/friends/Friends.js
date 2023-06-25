@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 const Friends = () => {
 
+  const url = "http://localhost:3001/api";
   const { currentUser } = useContext(AuthContext);
 
   const [friends, unFollowers] = useQueries({
@@ -16,13 +17,13 @@ const Friends = () => {
         {
           queryKey: ['friends'],
           queryFn: async () =>
-          await axios.get("http://localhost:3001/api/follower/getFollowingUserDetails?token="+currentUser.token)
+          await axios.get(url + "/follower/getFollowingUserDetails?token="+currentUser.token)
               .then((res) => res.data )
         },
         {
             queryKey: ['unfollowers'],
             queryFn: async () =>
-            await axios.get("http://localhost:3001/api/follower/unfollowers?token="+currentUser.token)
+            await axios.get(url + "/follower/unfollowers?token="+currentUser.token)
                 .then((res) => res.data )
         }
       ]
@@ -31,7 +32,7 @@ const Friends = () => {
   const queryClient = useQueryClient();
 
   const mutationFollow = useMutation(async (userId) => {
-      return await axios.delete("http://localhost:3001/api/follower?token="+currentUser.token+"&followedUId="+userId);
+      return await axios.delete(url + "/follower?token="+currentUser.token+"&followedUId="+userId);
   }, {
     onSuccess: () => {
       // invalidate and refetch:
@@ -40,7 +41,7 @@ const Friends = () => {
   })
 
   const mutationUnFollow = useMutation(async (userId) => {
-    return await axios.post("http://localhost:3001/api/follower?token="+currentUser.token, {
+    return await axios.post(url + "/follower?token="+currentUser.token, {
         followedUId: userId
       })
   }, {
@@ -62,7 +63,7 @@ const Friends = () => {
     <div className='friend-page'>
       <div className="friends">
         <span>Your friends</span>
-        {friends.data?.length === 0 ? <sapn className='message'>ooops!, you have no friends</sapn> :friends.data?.map( friend => {
+        {friends.data?.length === 0 ? <span className='message'>ooops!, you have no friends</span> :friends.data?.map( friend => {
           return (
             <div key={friend.userId} className="item">
               <Link to={`/profile/${friend.userId}`} >

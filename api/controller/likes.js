@@ -1,6 +1,7 @@
 
 const jwt = require("jsonwebtoken");
 const db = require("../connection.js");
+require('dotenv').config();
 
 const getLikes = (req, res) => {
     const q = "SELECT likesUId FROM likes where likesPId = ?";
@@ -16,7 +17,7 @@ const addLike = (req, res) => {
     const token = req.body.token;
     if(!token) return res.status(401).json("user not logged in");
     
-    jwt.verify(token, "secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.secretKey, (err, userInfo) => {
         if(err) return res.status(403).json(err);
         
         const q = "INSERT INTO likes (`likesUId`, `likesPId`) VALUES (?)";
@@ -35,7 +36,7 @@ const deleteLike = (req, res) => {
     const token = req.query.token;
     if(!token) return res.status(401).json("user not logged in");
 
-    jwt.verify(token, "secretKey", (err, userInfo) => {
+    jwt.verify(token, process.env.secretKey, (err, userInfo) => {
         if(err) return res.status(403).json(err);
 
         const q =  "DELETE FROM likes WHERE `likesUId` = ? AND `likesPId` = ?";
