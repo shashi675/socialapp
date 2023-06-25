@@ -1,0 +1,10 @@
+
+@import './style.scss';
+
+.layout {
+    position: relative;
+    
+    @include mobile {
+        flex-direction: column-reverse;
+    }
+}

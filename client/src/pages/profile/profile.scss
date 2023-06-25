@@ -1,0 +1,145 @@
+
+@import "../../style.scss";
+
+.profile {
+    @include themify($themes) {
+
+        background-color: themed("bgSoft");
+        min-height: calc(100vh - 70px);
+
+        .images {
+            width: 100%;
+            height: 200px;
+            position: relative;
+
+            @include mobile {
+                height: 100px;
+            }
+            
+            .cover {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border: 2px solid themed("border");
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+            }
+
+            .profilePic {
+
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                object-fit: cover;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin-inline: auto;
+                top: calc( 200px - (150px / 2) );
+                border: 2px solid themed("border");
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+                @include mobile {
+                    width: 75px;
+                    height: 75px;
+                    top: calc( 100px - (75px / 2) );
+                }
+            }
+        }
+
+        .profileContainer {
+            padding: 20px 40px;
+            
+            @include tablet {
+                padding: 20px;
+            }
+
+            @include mobile {
+                padding: 10px;
+            }
+
+            .userInfo {
+                height: 150px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                -moz-boz-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+                background-color: themed("bg");
+                color: themed("textColor");
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                // justify-content: space-around;
+                padding: 0 20px 10px;
+                padding-top: calc(150px / 2);
+                margin-bottom: 10px;
+
+                @include mobile {
+                    height: fit-content;
+                    width: 90%;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    // margin-top: 80px;
+                    padding-block: 10px;
+                    padding-top: calc(80px / 2);
+                }
+
+                @include tablet {
+                    gap: 12px;
+                }
+
+                .name {
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+
+                .userDetail {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    
+                    .left {
+                        display: flex;
+                        align-items: flex-start;
+                        flex-direction: column;
+                        gap: 10px;
+    
+                        @include tablet {
+                            flex-wrap: wrap;
+                        }
+    
+                        @include tablet {
+                            width: 60%;
+                            justify-content: space-around;
+                        }
+
+                        .item {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                        }
+    
+                        // a {
+                        //     color: themed("textColorSoft");
+                        // }
+                    }
+                }
+
+                button {
+                    padding: 10px 16px;
+                    border: none;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    color: white;
+                    background-color: blue;
+                    margin-top: 20px;
+
+                    @include tablet {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+    }
+}

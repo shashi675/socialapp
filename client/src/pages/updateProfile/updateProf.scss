@@ -1,0 +1,101 @@
+
+@import "../../style.scss";
+
+.updateProf {
+
+    @include themify($themes) {
+
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        min-height: 80vh;
+        background-color: themed("bgSoft");
+        color: themed("textColor");
+
+        .image {
+            width: 100%;
+            height: 200px;
+            position: relative;
+
+            @include mobile {
+                height: 100px;
+            }
+
+            .cover {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border: 2px solid themed("border");
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+            }
+            .profilePic {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                object-fit: cover;
+                position: absolute;
+                left: 0;
+                top: calc( 200px - (150px / 2) );
+                margin-inline: 50%;
+                translate: -50%;
+                border: 2px solid themed("border");
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+
+                @include mobile {
+                    width: 75px;
+                    height: 75px;
+                    top: calc( 100px - (75px / 2) );
+                }
+            }
+        }
+
+
+        .profile-container {
+            padding: 50px;
+            padding-left: 20%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+
+            @include mobile {
+                margin-top: 0;
+                padding-top: 30px;
+            }
+
+            .userName {
+                align-self: center;
+    
+                strong {
+                    font-size: large;
+                }
+            }
+    
+            input {
+                outline: none;
+                margin-left: 10px;
+                background-color: themed("bg");
+                color: themed("textColor");
+                border: 1px solid themed("border");
+                padding: 5px;
+                padding-inline: 10px;
+                border-radius: 5px;
+                width: 40%;
+            }
+    
+            button {
+                padding: 8px 16px;
+                border: none;
+                border-radius: 10px;
+                width: fit-content;
+                cursor: pointer;
+                color: white;
+                background-color: blue;
+                align-self: center;
+                margin-top: 30px;
+            }
+        }
+    }
+}

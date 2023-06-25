@@ -1,0 +1,129 @@
+
+@import "../../style.scss";
+
+.leftbar {
+    @include themify($themes) {
+
+        flex: 2;
+        position: sticky;
+        top: 70px;
+        height: calc(100vh - 70px);
+        overflow: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        background-color: themed("bg");
+        color: themed("textColor");
+
+        @include tablet {
+            flex: 3;            
+        }
+
+        @include mobile {
+            // top: calc(100vh - 70px);
+            bottom: 0;
+            left: 0;
+            height: fit-content;
+            z-index: 999;
+        }
+
+        .menu {
+            padding: 20px;
+            height: 100%;
+            padding-top: 50px;
+
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            :hover {
+                translate: 2px;
+            }
+
+            @include tablet {
+                padding: 10px;                
+            }
+
+            @include mobile {
+                margin-inline: 10px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .user {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+                span {
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+
+                @include mobile {
+                    display: none;
+                }
+            }
+
+            span {
+                font-size: 14px;
+            }
+
+            .item {
+                a {
+                    text-decoration: none;
+                    color: themed("textColor");
+
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    position: relative;
+
+                    @include mobile {
+                        flex-direction: column;
+                    }
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        background: white;
+
+                        @include mobile {
+                            width: 23px;
+                            height: 23px;
+                        }
+                    }
+                    span {
+                        font-size: 16px;
+
+                        @include mobile {
+                            font-size: 12px;
+                        }
+                    }
+
+                    span.fol-count {
+                        background: red;
+                        color: white;
+                        padding: 5px;
+                        border-radius: 50%;
+
+                        @include mobile {
+                            position: absolute;
+                            right: 3px;
+                            top: 3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

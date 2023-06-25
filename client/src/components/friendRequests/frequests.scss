@@ -1,0 +1,78 @@
+
+
+@import '../../style.scss';
+    
+.frequests {
+    @include themify($themes) {
+
+        padding: 30px;
+        min-height: calc(100vh - 70px);
+        background: themed("bgSoft");
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        span {
+            color: themed("textColorSoft");
+        }
+
+        .message {
+            color: themed("textColor");
+        }
+
+        .item {    
+            background-color: themed("bg");
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+
+            a {
+                text-decoration: none;  
+                display: flex;
+                align-items: center;
+                gap: 20px;  
+
+                @include mobile {
+                    gap: 5px;
+                }
+
+                img {
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 50%;
+                    background-size: cover;
+                }
+    
+                span {
+                    color: themed("textColor");
+                }
+            }
+            div {
+                display: flex;
+                gap: 10px;
+
+                button {
+                    margin-left: auto;
+                    // margin-right: 20%;
+                    padding: 8px 10px;
+                    border: none;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    color: white;
+                }
+
+                &
+                :first-child {
+                    margin-left: 5px;
+                    background-color: blue;
+                }
+                &
+                :last-child {
+                    background-color: red;
+                }
+            }
+        }
+    }
+}
