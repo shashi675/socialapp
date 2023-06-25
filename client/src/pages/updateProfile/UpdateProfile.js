@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UpdateProfile = () => {
 
-    const url = "http://localhost:3001/api";
+    const url = process.env.REACT_APP_BACKEND_URL;
     const { currentUser, setCurrentUser } = useContext(AuthContext);
     const [values, setValues] = useState({
         name:"",

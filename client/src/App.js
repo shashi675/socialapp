@@ -19,12 +19,11 @@ import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
 import Search from "./components/search/Search";
 
+
 function App() {
   
   const { darkMode } = useContext(DarkModeContext);
   const { currentUser } = useContext(AuthContext);
-
-
   
   const Layout = () => {
     return (

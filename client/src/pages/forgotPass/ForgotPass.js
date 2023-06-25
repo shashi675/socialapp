@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const ForgotPass = () => {
 
-    const url = "http://localhost:3001/api";
+    const url = process.env.REACT_APP_BACKEND_URL;
     const [inputs, setInputs] = useState({
         userName: "",
         email: ""

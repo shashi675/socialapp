@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 export const AuthContext = createContext();
 export const AuthContextProvider = ({children}) => {
 
-    const url = "http://localhost:3001/api";
+    const url = process.env.REACT_APP_BACKEND_URL;
     const [currentUser, setCurrentUser] = useState(
         JSON.parse(localStorage.getItem("user")) || null
     );

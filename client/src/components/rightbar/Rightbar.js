@@ -1,18 +1,16 @@
 
 import './rightbar.scss';
 
-import profilePic from '../../assets/11.png';
 import axios from 'axios';
 import { AuthContext } from '../../context/authContext';
-import { useContext, useReducer } from 'react';
+import { useContext } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { FollowerContext } from '../../context/followersContext';
 
 
 const Rightbar = () => {
 
-  const url = "http://localhost:3001/api";
+  const url = process.env.REACT_APP_BACKEND_URL;
   const { currentUser } = useContext(AuthContext);
 
   const { data: unFollowers } = useQuery(['unfollowers'], async () => {

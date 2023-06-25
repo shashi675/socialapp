@@ -13,7 +13,7 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 const Leftbar = () => {
 
   const { currentUser } = useContext(AuthContext);
-  const url = "http://localhost:3001/api";
+  const url = process.env.REACT_APP_BACKEND_URL;
 
   const [myFollowers, meFollowing] = useQueries({
     queries: [

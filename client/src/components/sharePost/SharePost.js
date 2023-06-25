@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const SharePost = () => {
 
-    const url = "http://localhost:3001/api";
+    const url = process.env.REACT_APP_BACKEND_URL;
     const { currentUser } = useContext(AuthContext);
 
     const [file, setFile] = useState(null);

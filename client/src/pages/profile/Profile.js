@@ -13,7 +13,7 @@ import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query';
 
 const Profile = () => {
 
-  const url = "http://localhost:3001/api";
+  const url = process.env.REACT_APP_BACKEND_URL;
   const { currentUser } = useContext(AuthContext);
   const userId = parseInt(useLocation().pathname.split("/")[2]);
   const navigate = useNavigate();

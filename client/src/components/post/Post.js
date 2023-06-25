@@ -3,7 +3,6 @@ import './post.scss';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import { Link } from 'react-router-dom';
 import Comments from '../comments/Comments';
 import { useContext, useState } from 'react';
@@ -14,7 +13,7 @@ import { AuthContext } from '../../context/authContext';
 
 const Post = ({ post, profileOpen }) => {
 
-    const url = "http://localhost:3001/api";
+    const url = process.env.REACT_APP_BACKEND_URL;
     const [commentOpen, setCommentOpen] = useState(false);
     const { currentUser } = useContext(AuthContext);
 

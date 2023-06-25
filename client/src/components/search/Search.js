@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const Search = () => {
 
-  const url = "http://localhost:3001/api";
+  const url = process.env.REACT_APP_BACKEND_URL;
     const [searchText, setSearchText] = useState('');
     const [result, setResult] = useState(null);
 

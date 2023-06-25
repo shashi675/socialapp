@@ -10,7 +10,7 @@ import { useContext } from 'react';
 
 const Frequests = ({ followers, following }) => {
 
-  const url = "http://localhost:3001/api";
+  const url = process.env.REACT_APP_BACKEND_URL;
   const { currentUser } = useContext(AuthContext);
 
   const [myFollowers, meFollowing] = useQueries({
