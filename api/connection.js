@@ -2,12 +2,8 @@
 const mySql = require("mysql");
 require('dotenv').config();
 
+const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
 
-const db = mySql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE
-});
+const db = mySql.createConnection(urlDB);
 
 module.exports = db;
