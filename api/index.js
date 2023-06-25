@@ -25,7 +25,7 @@ app.use((req, res, next) => {
     next();
 })
 app.use(cors({
-    origin: "https://stately-chimera-33fc15.netlify.app/"
+    origin: "https://sksocialapp.netlify.app"
 }));
 
 
