@@ -26,7 +26,7 @@ app.use((req, res, next) => {
     next();
 })
 app.use(cors({
-    origin: "http://localhost:3000"
+    origin: "https://6498570adf9c3f107aa942d5--stately-chimera-33fc15.netlify.app/"
 }));
 
 
