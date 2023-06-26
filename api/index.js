@@ -24,9 +24,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Credentials", true);
     next();
 })
-app.use(cors({
-    origin: "https://sksocialapp.netlify.app"
-}));
+app.use(cors());
 
 
 const storage = multer.diskStorage({
@@ -54,7 +52,7 @@ app.use("/api/likes", likeRoute);
 app.use("/api/comments", commentRoute);
 app.use("/api/follower", followerRoute);
 
-const port = process.env.port || 3001;
-app.listen(port, () => {
+const port = 3001;
+app.listen(process.env.port || port, () => {
     console.log(`server running on port ${port}`);
 })
