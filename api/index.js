@@ -52,7 +52,7 @@ app.use("/api/likes", likeRoute);
 app.use("/api/comments", commentRoute);
 app.use("/api/follower", followerRoute);
 
-const port = 3001;
-app.listen(process.env.port || port, () => {
+const port = process.env.port || 3001;
+app.listen(port, () => {
     console.log(`server running on port ${port}`);
 })
