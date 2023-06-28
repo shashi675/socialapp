@@ -26,8 +26,7 @@ app.use(express.json());
 // })
 app.use(cors({
     origin:'https://sksocialapp.netlify.app',
-    optionsSuccessStatus: 200,
-    withCredentials: true
+    optionsSuccessStatus: 200
 }));
 
 // app.use((req, res, next) => {
