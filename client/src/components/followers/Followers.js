@@ -55,7 +55,7 @@ const Followers = () => {
   return (
     <div className="followers">
         <span>Your followers</span>
-        {myFollowers.data?.length === 0 ? <sapn className='message'>ooops!, you have no followers</sapn> : myFollowers.data?.map( follower => {
+        {myFollowers.data?.length === 0 ? <span className='message'>ooops!, you have no followers</span> : myFollowers.data?.map( follower => {
           return (
             <div key={follower.userId} className="item">
               <Link to={`/profile/${follower.userId}`} >
