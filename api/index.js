@@ -31,12 +31,14 @@ app.use(express.json());
 // }));
 
 // Enable CORS
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    next();
-});
+app.use(cors());
+router.get("/", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
+     });
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
