@@ -24,19 +24,19 @@ app.use(express.json());
 //     res.header("Access-Control-Allow-Credentials", true);
 //     next();
 // })
-// app.use(cors({
-//     origin:'https://sksocialapp.netlify.app/',
-//     credentials: true
-// }));
+app.use(cors({
+    origin:'https://sksocialapp.netlify.app'
+    // credentials: true
+}));
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-  });
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app");
+//     res.header(
+//       "Access-Control-Allow-Headers",
+//       "Origin, X-Requested-With, Content-Type, Accept"
+//     );
+//     next();
+//   });
 
 
 const storage = multer.diskStorage({
