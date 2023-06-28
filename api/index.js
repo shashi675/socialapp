@@ -31,6 +31,8 @@ app.use(express.json());
 // }));
 
 // Enable CORS
+const router = express.Router();
+
 app.use(cors());
 router.get("/", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app")
