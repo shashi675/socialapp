@@ -20,16 +20,23 @@ const app = express();
 // middlewares
 app.use(cookieParser());
 app.use(express.json());    
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Credentials", true);
-    next();
-})
-app.use(cors({
-    origin: 'https://sksocialapp.netlify.app',
-    optionsSuccessStatus: 200,
-    withCredentials: true
-}));
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Credentials", true);
+//     next();
+// })
+// app.use(cors({
+//     origin: 'https://sksocialapp.netlify.app',
+//     optionsSuccessStatus: 200,
+//     withCredentials: true
+// }));
 
+// Enable CORS
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+});
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
