@@ -53,7 +53,7 @@ const login = (req, res) => {
         const checkPassword = bcrypt.compareSync(req.body.password, data[0].password);
 
         if(!checkPassword) return res.status(400).json("wrong userId or password");
-
+        console.log(process.env.secretKey);
         const token = jwt.sign({id: data[0].uId}, process.env.secretKey);
         const { password, ...others } = data[0];
         others["token"] = token;
