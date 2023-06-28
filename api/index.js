@@ -20,10 +20,10 @@ const app = express();
 // middlewares
 app.use(cookieParser());
 app.use(express.json());    
-// app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Credentials", true);
-//     next();
-// })
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Credentials", true);
+    next();
+})
 app.use(cors({
     origin:'https://sksocialapp.netlify.app/',
     credentials: true
