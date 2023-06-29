@@ -21,36 +21,37 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());    
 // app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Credentials", true);
-//     next();
-// })
-// app.use(cors({
-//     origin: 'https://sksocialapp.netlify.app',
-//     optionsSuccessStatus: 200,
-//     withCredentials: true
-// }));
+    //     res.header("Access-Control-Allow-Credentials", true);
+    //     next();
+    // })
+    // app.use(cors({
+        //     origin: 'https://sksocialapp.netlify.app',
+        //     optionsSuccessStatus: 200,
+        //     withCredentials: true
+        // }));
 
-// Enable CORS
-const router = express.Router();
+        // Enable CORS
+        
+        // app.use(cors());
+    const router = express.Router();
+    router.get("/", (req, res) => {
+        res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
+    });
+
 app.use('/uploads', express.static('uploads'));
-
-// app.use(cors());
-router.get("/", (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app")
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.setHeader("Access-Control-Max-Age", "1800");
-    res.setHeader("Access-Control-Allow-Headers", "content-type");
-    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
-     });
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './uploads');
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + file.originalname);
-    }
-})
+        
+    const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, './uploads');
+        },
+        filename: function (req, file, cb) {
+            cb(null, Date.now() + file.originalname);
+        }
+    })
 
 const upload = multer({ storage: storage });
 
