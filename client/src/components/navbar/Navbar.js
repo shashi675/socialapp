@@ -10,6 +10,8 @@ import { AuthContext } from '../../context/authContext';
 
 
 const Navbar = () => {
+    
+    const imgUrl = process.env.REACT_APP_IMG_URL;
 
     const { toggle, darkMode } = useContext(DarkModeContext);
     const { currentUser, logout } = useContext(AuthContext);
@@ -27,7 +29,7 @@ const Navbar = () => {
         </div>
         <div className='right'>
             <div className='user'>
-                <img src={ "../uploads/" + currentUser.profilePic } alt=''/>
+                {currentUser.profilePic !== null && <img src={ imgUrl + currentUser.profilePic } alt=''/>}
                 <span>{ currentUser.name }</span>
             </div>
             <button onClick={logout}>logout</button>

@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UpdateProfile = () => {
 
+    const imgUrl = process.env.REACT_APP_IMG_URL;
     const url = process.env.REACT_APP_BACKEND_URL;
     const { currentUser, setCurrentUser } = useContext(AuthContext);
     const [values, setValues] = useState({
@@ -73,8 +74,8 @@ const UpdateProfile = () => {
     return (
         <div className='updateProf'>
             <div className='image'>
-                <img src={'../uploads/' + currentUser.coverPic} alt='cover' className='cover' />
-                <img src={'../uploads/' + currentUser.profilePic} alt='profile' className='profilePic' />
+                {currentUser?.coverPic !== null && <img src={imgUrl + currentUser.coverPic} alt='cover' className='cover' />}
+                {currentUser.profilePic !== null && <img src={imgUrl + currentUser.profilePic} alt='profile' className='profilePic' />}
             </div>
             <div className='profile-container'>
                 <div className='userName'>user name: <strong>{currentUser.userName}</strong></div>

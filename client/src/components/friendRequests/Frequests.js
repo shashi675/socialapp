@@ -9,7 +9,7 @@ import { useContext } from 'react';
 
 
 const Frequests = ({ followers, following }) => {
-
+  const imgUrl = process.env.REACT_APP_IMG_URL;
   const url = process.env.REACT_APP_BACKEND_URL;
   const { currentUser } = useContext(AuthContext);
 
@@ -69,7 +69,7 @@ const Frequests = ({ followers, following }) => {
             return (
               <div key={follower.userId} className="item">
                 <Link to={`/profile/${follower.userId}`} >
-                  <img src={"../uploads/" + follower.profilePic} />
+                  {follower.profilePic !== null && <img src={imgUrl + follower.profilePic} />}
                   <span>{follower.name}</span>
                 </Link>
                 <div>

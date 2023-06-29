@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 
 const Rightbar = () => {
 
+  const imgUrl = process.env.REACT_APP_IMG_URL;
   const url = process.env.REACT_APP_BACKEND_URL;
   const { currentUser } = useContext(AuthContext);
 
@@ -49,7 +50,7 @@ const Rightbar = () => {
                 return (
                   <div className='user' key={userInfo.userId}>
                     <div className='userInfo'>
-                      <img src={"../uploads/" + userInfo.profilePic} alt='' />
+                      {userInfo.profilePic !== null && <img src={imgUrl + userInfo.profilePic} alt='' />}
                       <Link to={`/profile/${userInfo.userId}`} style={{ textDecoration: "none", color: "inherit"}}>
                           <span className='name'>
                               {userInfo.name}

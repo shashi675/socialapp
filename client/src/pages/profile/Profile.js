@@ -13,6 +13,7 @@ import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query';
 
 const Profile = () => {
 
+  const imgUrl = process.env.REACT_APP_IMG_URL;
   const url = process.env.REACT_APP_BACKEND_URL;
   const { currentUser } = useContext(AuthContext);
   const userId = parseInt(useLocation().pathname.split("/")[2]);
@@ -68,8 +69,8 @@ const handleFollow = async () => {
     profileUser.isLoading ? "loading..." :
     ( <div className='profile'>
         <div className='images'>
-          <img src={"../uploads/" + profileUser.data.coverPic} alt='cover' className='cover' />
-          <img src={"../uploads/" + profileUser.data.profilePic} alt='profile' className='profilePic' />
+          {profileUser.data.coverPic !== null && <img src={imgUrl + profileUser.data.coverPic} alt='cover' className='cover' />}
+          {profileUser.data.profilePic !== null && <img src={imgUrl + profileUser.data.profilePic} alt='profile' className='profilePic' />}
         </div>
         <div className='profileContainer'>
           <div className='userInfo'>

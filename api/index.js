@@ -32,6 +32,7 @@ app.use(express.json());
 
 // Enable CORS
 const router = express.Router();
+app.use('/uploads', express.static('uploads'));
 
 app.use(cors());
 router.get("/", (req, res) => {
@@ -44,7 +45,7 @@ router.get("/", (req, res) => {
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'https://sksocialapp.netlify.app/client/public/uploads');
+        cb(null, './uploads');
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + file.originalname);

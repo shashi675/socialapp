@@ -4,19 +4,9 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require('dotenv').config();
 
-const a = (req, res) => {
-    const q = 'SELECT * FROM users';
-    console.log("yes")
-    db.query(q, (err, data) => {
-        if(err) res.json(err);
-        console.log("ues", data)
-        res.status(200).json(data);
-    })
-}
 
 const register = (req, res) => {
     // check if user is already registered
-    console.log(req.body.email, "9");
     const q = "SELECT uId FROM users WHERE email = ?";
     db.query(q, [req.body.email], (err, data) => {
 
@@ -34,7 +24,6 @@ const register = (req, res) => {
 
         db.query(q, [values], (err, data) => {
             if(err) return res.status(500).json(err);
-            console.log(data, "27")
             return res.status(200).json("USER CREATED SUCCESSFULLY");
         })
 
@@ -53,7 +42,6 @@ const login = (req, res) => {
         const checkPassword = bcrypt.compareSync(req.body.password, data[0].password);
 
         if(!checkPassword) return res.status(400).json("wrong userId or password");
-        console.log(process.env.secretKey);
         const token = jwt.sign({id: data[0].uId}, process.env.secretKey);
         const { password, ...others } = data[0];
         others["token"] = token;
@@ -105,4 +93,4 @@ const updatePassword = (req, res) => {
 
 }
 
-module.exports = { register, login, forgetPassword, updatePassword, a };
+module.exports = { register, login, forgetPassword, updatePassword };

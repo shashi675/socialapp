@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 const Search = () => {
 
+  const imgUrl = process.env.REACT_APP_IMG_URL;
   const url = process.env.REACT_APP_BACKEND_URL;
     const [searchText, setSearchText] = useState('');
     const [result, setResult] = useState(null);
@@ -31,7 +32,7 @@ const Search = () => {
         return (
           <div key={user.userId} className='each-user'>
             <Link to={`/profile/${user.userId}`} >
-              <img src={"../uploads/" + user.profilePic} alt='' />
+              {user.profilePic !== null && <img src={imgUrl + user.profilePic} alt='' />}
               <div>
                   <span>{user.name}</span>
                   <span className='uName'>{user.userName}</span>

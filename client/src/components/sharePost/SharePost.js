@@ -8,6 +8,7 @@ import axios from 'axios';
 
 const SharePost = () => {
 
+    const imgUrl = process.env.REACT_APP_IMG_URL;
     const url = process.env.REACT_APP_BACKEND_URL;
     const { currentUser } = useContext(AuthContext);
 
@@ -55,7 +56,7 @@ const SharePost = () => {
         <div className='top'>
             <div className='left'>
                 <div className='type-something'>
-                    <img src={"../uploads/" + currentUser.profilePic} alt='' />
+                    {currentUser.profilePic !== null && <img src={imgUrl + currentUser.profilePic} alt='' />}
                     <input type='text' placeholder={`type your post ${currentUser.name}`} onChange={ e=> setDescn(e.target.value) } value={descn} />
                 </div>
             </div>

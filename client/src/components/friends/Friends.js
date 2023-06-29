@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 const Friends = () => {
 
+  const imgUrl = process.env.REACT_APP_IMG_URL;
   const url = process.env.REACT_APP_BACKEND_URL;
   const { currentUser } = useContext(AuthContext);
 
@@ -32,7 +33,9 @@ const Friends = () => {
   const queryClient = useQueryClient();
 
   const mutationFollow = useMutation(async (userId) => {
-      return await axios.delete(url + "/follower?token="+currentUser.token+"&followedUId="+userId);
+      return await axios.post(url + "/follower?token="+currentUser.token, {
+        followedUId: userId
+      })
   }, {
     onSuccess: () => {
       // invalidate and refetch:
@@ -41,9 +44,7 @@ const Friends = () => {
   })
 
   const mutationUnFollow = useMutation(async (userId) => {
-    return await axios.post(url + "/follower?token="+currentUser.token, {
-        followedUId: userId
-      })
+    return await axios.delete(url + "/follower?token="+currentUser.token+"&followedUId="+userId);
   }, {
       onSuccess: () => {
         // invalidate and refetch:
@@ -67,10 +68,10 @@ const Friends = () => {
           return (
             <div key={friend.userId} className="item">
               <Link to={`/profile/${friend.userId}`} >
-                <img src={"../uploads/" + friend.profilePic} />
+                {friend.profilePic !== null && <img src={imgUrl + friend.profilePic} />}
                 <span>{friend.name}</span>
               </Link>
-              <button onClick={ () => handleFollow(friend.userId)}>unfollow</button>
+              <button onClick={ () => handleUnFollow(friend.userId)}>unfollow</button>
             </div>
           )
         })}
@@ -83,10 +84,10 @@ const Friends = () => {
             return (
               <div key={user.userId} className='item'>
                 <Link to={`/profile/${user.userId}`}>
-                  <img src={'../uploads/' + user.profilePic} />
+                  {user.profilePic !== null && <img src={imgUrl + user.profilePic} />}
                   <span>{user.name}</span>
                 </Link>
-                <button onClick={ () => handleUnFollow(user.userId)}>follow</button>
+                <button onClick={ () => handleFollow(user.userId)}>follow</button>
               </div>
             )
           })}

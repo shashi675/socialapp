@@ -106,7 +106,17 @@ const deleteFollower = (req, res) => {
 
         const q = "DELETE FROM relations WHERE followerUId = ? AND followedUId = ?";
 
-        db.query(q, [req.query.followerUId, userInfo.id], (err, data) => {
+        let followerUId, followedUId;
+        if(req.query.followerUId) {
+            followerUId = req.query.followerUId;
+            followedUId = userInfo.id;
+        }
+        else {
+            followedUId = req.query.followedUId;
+            followerUId = userInfo.id;
+        }
+
+        db.query(q, [followerUId, followedUId], (err, data) => {
             if(err) return res.status(500).json(err);
 
             return res.status(200).json("user has been deleted");

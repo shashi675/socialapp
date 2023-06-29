@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 
 const Followers = () => {
-
+  const imgUrl = process.env.REACT_APP_IMG_URL;
   const url = process.env.REACT_APP_BACKEND_URL;
 
     const { currentUser } = useContext(AuthContext);
@@ -59,7 +59,7 @@ const Followers = () => {
           return (
             <div key={follower.userId} className="item">
               <Link to={`/profile/${follower.userId}`} >
-                <img src={"../uploads/" + follower.profilePic} />
+                {follower.profilePic !== null && <img src={imgUrl + follower.profilePic} alt='profile' />}
                 <span>{follower.name}</span>
               </Link>
               <button onClick={ () => handleClick(follower.userId)}>{meFollowing.data?.includes(follower.userId) ? "unfollow" : "follow"}</button>

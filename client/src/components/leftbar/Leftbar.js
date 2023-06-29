@@ -14,6 +14,7 @@ const Leftbar = () => {
 
   const { currentUser } = useContext(AuthContext);
   const url = process.env.REACT_APP_BACKEND_URL;
+  const imgUrl = process.env.REACT_APP_IMG_URL;
 
   const [myFollowers, meFollowing] = useQueries({
     queries: [
@@ -43,12 +44,12 @@ const Leftbar = () => {
     <div className='leftbar'>
       <div className='menu'>
         <div className='user'>
-          <img src={ "../uploads/" + currentUser.profilePic } alt="profile" />
+          {currentUser.profilePic !== null && <img src={ imgUrl + currentUser.profilePic } alt="profile" />}
           <span>{ currentUser.name }</span>
         </div>
         <div className='item'>
           <Link to={`/profile/${currentUser.uId}`}>
-            <img src={"../uploads/" + currentUser.profilePic} alt='' />
+            {currentUser.profilePic !== null && <img src={imgUrl + currentUser.profilePic} alt='user-profile' />}
             <span>profile</span>
           </Link>
         </div>

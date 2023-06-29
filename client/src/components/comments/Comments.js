@@ -7,6 +7,7 @@ import moment from 'moment';
 
 const Comments = ({ comments, mutationComments }) => {
 
+    const imgUrl = process.env.REACT_APP_IMG_URL;
     const { currentUser } = useContext(AuthContext);
     const [descn, setDescn] = useState("");
 
@@ -22,7 +23,7 @@ const Comments = ({ comments, mutationComments }) => {
   return (
     <div className='comments'>
         <div className='writeComment'>
-            <img src={"../uploads/" + currentUser.profilePic} alt='' />
+            {currentUser.profilePic !== null && <img src={imgUrl + currentUser.profilePic} alt='' />}
             <input type='text' placeholder='write your comment...' onChange={ (e) => setDescn(e.target.value) } value={ descn } />
             <button onClick={ handleClick }>Send</button>
         </div>
@@ -30,7 +31,7 @@ const Comments = ({ comments, mutationComments }) => {
         return (
             <div className='comment' key={ comment.cId }>
                 <div className='infoo'>
-                    <img src={"../uploads/" + comment.profilePic} alt='' />
+                    {comment.profilePic !== null && <img src={imgUrl + comment.profilePic} alt='' />}
                     <div className='detail'>
                         <p>{comment.name}</p>
                         <span>{comment.descn}</span>

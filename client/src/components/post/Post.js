@@ -13,6 +13,7 @@ import { AuthContext } from '../../context/authContext';
 
 const Post = ({ post, profileOpen }) => {
 
+    const imgUrl = process.env.REACT_APP_IMG_URL;
     const url = process.env.REACT_APP_BACKEND_URL;
     const [commentOpen, setCommentOpen] = useState(false);
     const { currentUser } = useContext(AuthContext);
@@ -83,7 +84,7 @@ const Post = ({ post, profileOpen }) => {
         <div className='container'>
             <div className='user'>
                 <div className='userInfoo'>
-                    <img src={"../uploads/" + post.profilePic} alt='' />
+                    {post.profilePic !== null && <img src={imgUrl + post.profilePic} alt='' />}
                     <div className='details'>
                         <Link to={`/profile/${post.userId}`} style={{ textDecoration: "none", color: "inherit"}}>
                             <span className='name'>
@@ -97,7 +98,7 @@ const Post = ({ post, profileOpen }) => {
             </div>
             <div className='content'>
                 <p>{post.descn}</p>
-                <img src={"../uploads/" + post.img} alt='' />
+                {post.img !== null && <img src={imgUrl + post.img} alt='' />}
             </div>
             <div className='interact'>
                 <div className='item'>
