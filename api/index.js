@@ -34,7 +34,7 @@ app.use(express.json());
 const router = express.Router();
 app.use('/uploads', express.static('uploads'));
 
-app.use(cors());
+// app.use(cors());
 router.get("/", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app")
     res.setHeader("Access-Control-Allow-Credentials", "true");
