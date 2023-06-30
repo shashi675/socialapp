@@ -21,8 +21,8 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());    
 app.use((req, res, next) => {
-        res.setHeader("Access-Control-Allow-Credentials", true);
-        res.appendHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app");
+        res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app");
+        res.appendHeader("Access-Control-Allow-Credentials", true);
         res.appendHeader("Access-Control-Allow-Headers", "content-type");
         next();
     })
