@@ -47,7 +47,7 @@ app.use((req, res, next) => {
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './uploads');
+        cb(null, 'uploads');
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + file.originalname);
@@ -62,7 +62,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 })
 
 
-app.use('/uploads', express.static('./uploads'));
+app.use('/uploads', express.static('uploads'));
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
