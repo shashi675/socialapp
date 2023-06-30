@@ -26,13 +26,13 @@ app.use(cors({
     }));
 app.use(express.json());    
 app.use((req, res, next) => {
-        res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app");
+    res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app");
         res.append("Access-Control-Allow-Credentials", true);
         res.append("Access-Control-Allow-Headers", "content-type");
         next();
     })
 
-        // Enable CORS
+    // Enable CORS
         
         // app.use(cors());
     // const router = express.Router();
@@ -44,16 +44,15 @@ app.use((req, res, next) => {
     //     res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
     // });
 
-app.use('/uploads', express.static('uploads'));
-        
-    const storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, './uploads');
-        },
-        filename: function (req, file, cb) {
-            cb(null, Date.now() + file.originalname);
-        }
-    })
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + file.originalname);
+    }
+})
 
 const upload = multer({ storage: storage });
 
@@ -63,6 +62,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 })
 
 
+app.use('/uploads', express.static('./uploads'));
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
