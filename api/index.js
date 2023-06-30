@@ -20,29 +20,29 @@ const app = express();
 // middlewares
 app.use(cookieParser());
 app.use(express.json());    
-// app.use((req, res, next) => {
-//         res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app");
-//         res.appendHeader("Access-Control-Allow-Credentials", true);
-//         res.appendHeader("Access-Control-Allow-Headers", "content-type");
-//         next();
-//     })
-    // app.use(cors({
-    //         origin: 'https://sksocialapp.netlify.app',
-    //         optionsSuccessStatus: 200,
-    //         withCredentials: true
-    //     }));
+app.use((req, res, next) => {
+        res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app");
+        res.appendHeader("Access-Control-Allow-Credentials", true);
+        res.appendHeader("Access-Control-Allow-Headers", "content-type");
+        next();
+    })
+    app.use(cors({
+            origin: 'https://sksocialapp.netlify.app',
+            optionsSuccessStatus: 200,
+            withCredentials: true
+        }));
 
         // Enable CORS
         
         // app.use(cors());
-    const router = express.Router();
-    router.get("/", (req, res) => {
-        res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app")
-        res.setHeader("Access-Control-Allow-Credentials", "true");
-        res.setHeader("Access-Control-Max-Age", "1800");
-        res.setHeader("Access-Control-Allow-Headers", "content-type");
-        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
-    });
+    // const router = express.Router();
+    // router.get("/", (req, res) => {
+    //     res.setHeader("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app")
+    //     res.setHeader("Access-Control-Allow-Credentials", "true");
+    //     res.setHeader("Access-Control-Max-Age", "1800");
+    //     res.setHeader("Access-Control-Allow-Headers", "content-type");
+    //     res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
+    // });
 
 app.use('/uploads', express.static('uploads'));
         
