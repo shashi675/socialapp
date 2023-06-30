@@ -21,15 +21,15 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());    
 app.use((req, res, next) => {
-        res.header("Access-Control-Allow-Credentials", true);
-        res.header("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app");
+        res.set("Access-Control-Allow-Credentials", true);
+        res.set("Access-Control-Allow-Origin", "https://sksocialapp.netlify.app");
         next();
     })
-    app.use(cors({
-            origin: 'https://sksocialapp.netlify.app',
-            optionsSuccessStatus: 200,
-            withCredentials: true
-        }));
+    // app.use(cors({
+    //         origin: 'https://sksocialapp.netlify.app',
+    //         optionsSuccessStatus: 200,
+    //         withCredentials: true
+    //     }));
 
         // Enable CORS
         
