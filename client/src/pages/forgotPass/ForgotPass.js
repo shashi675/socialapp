@@ -20,6 +20,7 @@ const ForgotPass = () => {
 
     const [error, setError] = useState(null);
     const [message, setMessage] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const [credentials, setCredentials] = useState(false);
 
     const handleChangeI = e => {
@@ -40,7 +41,9 @@ const ForgotPass = () => {
         }
 
         try {
+            setIsLoading(true);
             const pass = await forgPassword(inputs);
+            setIsLoading(false);
             setCredentials(pass.data.credentils);
         } catch(err) {
             setError(err.response.data);
@@ -49,6 +52,8 @@ const ForgotPass = () => {
 
     const handleChangeP = (e) => {
         setMessage(null);
+        setError(null);
+        setIsLoading(false);
         setPass((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
 
@@ -60,12 +65,14 @@ const ForgotPass = () => {
             return;
         }
         
+        setIsLoading(true);
         await axios.put(url + "/auth", {
             password: pass.password,
             userName: inputs.userName
         })
             .then(setMessage("password updated"));
 
+        setIsLoading(false);
         setInputs({
             userName: "",
             email: ""
@@ -96,6 +103,7 @@ const ForgotPass = () => {
                 </div>
                 }
                 {error || message}
+                {!error && isLoading && "please wait"}
                 <div className='forgot'>
                     <span>go to login page</span>
                     <Link to='/login'>
