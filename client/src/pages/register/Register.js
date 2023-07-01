@@ -66,7 +66,7 @@ const Register = () => {
             <input type='name' placeholder='name' name="name" onChange={handleChange} />
             <input type='password' placeholder='password' name="password" onChange={handleChange} />
             {error || message}
-            {isLoading && "please wait"}
+            {!error && isLoading && "please wait"}
             <button onClick={handleClick}>Register</button>
           <div>
             <span>already have an account?</span>
