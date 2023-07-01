@@ -25,10 +25,7 @@ const UpdateProfile = () => {
             const formData = new FormData();
             formData.append("file", file);
 
-            const res = await axios.post(url + "/upload", formData, {
-                headers: {
-                  'Content-Type': 'multipart/form-data'
-                }});
+            const res = await axios.post(url + "/upload", formData);
             return res.data;
         } catch(err) {
             console.log(err);
@@ -60,7 +57,7 @@ const UpdateProfile = () => {
         const city = values.city.length !== 0 ? values.city : currentUser.city;
         const language = values.language.length !== 0 ? values.language : currentUser.language;
 
-        console.log(coverUrl, coverPic, profileUrl, profilePic)
+        // console.log(coverUrl, coverPic, profileUrl, profilePic)
 
         // console.log(coverPic, profilePic)
         mutation.mutate({
