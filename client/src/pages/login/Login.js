@@ -37,8 +37,8 @@ const Login = () => {
         <div className='card'>
             <h1>Login</h1>
             <form>
-                <input type='text' placeholder='username' name='userName' onChange={handleChange} />
-                <input type='password' placeholder='password' name='password' onChange={handleChange} />
+                <input type='text' placeholder='username' autoComplete='off' name='userName' onChange={handleChange} />
+                <input type='password' autoComplete='off' placeholder='password' name='password' onChange={handleChange} />
                 {error && error}
                 {!error && isLoading && "please wait"}
                 <button onClick={ handleLogin }>Login</button>

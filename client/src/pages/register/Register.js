@@ -61,10 +61,10 @@ const Register = () => {
       <div className='card'>
         <h1>Register</h1>
         <form>
-            <input type='text' placeholder='username' name="userName" onChange={handleChange} />
-            <input type='email' placeholder='email' name="email" onChange={handleChange} />
-            <input type='name' placeholder='name' name="name" onChange={handleChange} />
-            <input type='password' placeholder='password' name="password" onChange={handleChange} />
+            <input type='text' placeholder='username' autoComplete='off' name="userName" onChange={handleChange} />
+            <input type='email' placeholder='email' autoComplete='off' name="email" onChange={handleChange} />
+            <input type='name' placeholder='name' autoComplete='off' name="name" onChange={handleChange} />
+            <input type='password' placeholder='password' autoComplete='off' name="password" onChange={handleChange} />
             {error || message}
             {!error && isLoading && "please wait"}
             <button onClick={handleClick}>Register</button>

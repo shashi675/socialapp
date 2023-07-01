@@ -92,13 +92,13 @@ const ForgotPass = () => {
             <form>
                 {credentials ? 
                 <div className='form'>
-                    <input type='password' placeholder='password' name='password' onChange={handleChangeP} value={pass.password || ''} />
-                    <input type='password' placeholder='confirm password' name='confirmPassword' onChange={handleChangeP} value={pass.confirmPassword || ''} />
+                    <input type='password' placeholder='password' autoComplete='off' name='password' onChange={handleChangeP} value={pass.password || ''} />
+                    <input type='password' placeholder='confirm password' autoComplete='off' name='confirmPassword' onChange={handleChangeP} value={pass.confirmPassword || ''} />
                     <button onClick={ handleConfirmPass }>submit</button>
                 </div> :
                 <div className='form'>
-                    <input type='text' placeholder='username' name='userName' onChange={handleChangeI} value={inputs.userName} />
-                    <input type='email' placeholder='email' name='email' onChange={handleChangeI} value={inputs.email} />
+                    <input type='text' placeholder='username' autoComplete='off' name='userName' onChange={handleChangeI} value={inputs.userName} />
+                    <input type='email' placeholder='email' autoComplete='off' name='email' onChange={handleChangeI} value={inputs.email} />
                     <button onClick={ handleForgotPass }>submit</button>
                 </div>
                 }
