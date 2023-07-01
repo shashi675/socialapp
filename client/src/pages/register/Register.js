@@ -16,6 +16,7 @@ const Register = () => {
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = e => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -43,7 +44,9 @@ const Register = () => {
     }
 
     try {
+      setIsLoading(true);
       await axios.post(url + "/auth/register", inputs);
+      setIsLoading(false);
       navigate("/login");
     }
     catch(err) {
@@ -63,6 +66,7 @@ const Register = () => {
             <input type='name' placeholder='name' name="name" onChange={handleChange} />
             <input type='password' placeholder='password' name="password" onChange={handleChange} />
             {error || message}
+            {isLoading && "please wait"}
             <button onClick={handleClick}>Register</button>
           <div>
             <span>already have an account?</span>

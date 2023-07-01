@@ -17,7 +17,7 @@ const Login = () => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
 
-    const { login } = useContext(AuthContext);
+    const { login, isLoading } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -39,6 +39,7 @@ const Login = () => {
                 <input type='text' placeholder='username' name='userName' onChange={handleChange} />
                 <input type='password' placeholder='password' name='password' onChange={handleChange} />
                 {error && error}
+                {isLoading && "please wait"}
                 <button onClick={ handleLogin }>Login</button>
                 <div>
                     <span>don't have an accont?</span>
