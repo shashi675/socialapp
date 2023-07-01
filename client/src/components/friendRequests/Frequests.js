@@ -69,7 +69,10 @@ const Frequests = ({ followers, following }) => {
             return (
               <div key={follower.userId} className="item">
                 <Link to={`/profile/${follower.userId}`} >
-                  {follower.profilePic !== null && <img src={imgUrl + follower.profilePic} />}
+                  {follower.profilePic !== null ? 
+                    <img src={ imgUrl + follower.profilePic} alt='' /> :
+                    <img src={'/images/defaultProfilePic.png'} alt='' />
+                  }
                   <span>{follower.name}</span>
                 </Link>
                 <div>

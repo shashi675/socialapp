@@ -29,7 +29,10 @@ const Navbar = () => {
         </div>
         <div className='right'>
             <div className='user'>
-                {currentUser.profilePic !== null && <img src={ imgUrl + currentUser.profilePic } alt=''/>}
+                {currentUser.profilePic !== null ? 
+                  <img src={ imgUrl + currentUser.profilePic} alt='' /> :
+                  <img src={'/images/defaultProfilePic.png'} alt='' />
+                }
                 <span>{ currentUser.name }</span>
             </div>
             <button onClick={logout}>logout</button>

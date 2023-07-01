@@ -32,7 +32,10 @@ const Search = () => {
         return (
           <div key={user.userId} className='each-user'>
             <Link to={`/profile/${user.userId}`} >
-              {user.profilePic !== null && <img src={imgUrl + user.profilePic} alt='' />}
+              {user.profilePic !== null ? 
+                <img src={ imgUrl + user.profilePic} alt='' /> :
+                <img src={'/images/defaultProfilePic.png'} alt='' />
+              }
               <div>
                   <span>{user.name}</span>
                   <span className='uName'>{user.userName}</span>

@@ -84,7 +84,10 @@ const Post = ({ post, profileOpen }) => {
         <div className='container'>
             <div className='user'>
                 <div className='userInfoo'>
-                    {post.profilePic !== null && <img src={imgUrl + post.profilePic} alt='' />}
+                    {post.profilePic !== null ? 
+                    <img src={ imgUrl + post.profilePic} alt='' /> :
+                    <img src={'/images/defaultProfilePic.png'} alt='' />
+                    }
                     <div className='details'>
                         <Link to={`/profile/${post.userId}`} style={{ textDecoration: "none", color: "inherit"}}>
                             <span className='name'>

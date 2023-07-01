@@ -44,12 +44,18 @@ const Leftbar = () => {
     <div className='leftbar'>
       <div className='menu'>
         <div className='user'>
-          {currentUser.profilePic !== null && <img src={ imgUrl + currentUser.profilePic } alt="profile" />}
+          {currentUser.profilePic !== null ? 
+            <img src={ imgUrl + currentUser.profilePic} alt='' /> :
+            <img src={'/images/defaultProfilePic.png'} alt='' />
+          }
           <span>{ currentUser.name }</span>
         </div>
         <div className='item'>
           <Link to={`/profile/${currentUser.uId}`}>
-            {currentUser.profilePic !== null && <img src={imgUrl + currentUser.profilePic} alt='user-profile' />}
+            {currentUser.profilePic !== null ? 
+              <img src={ imgUrl + currentUser.profilePic} alt='' /> :
+              <img src={'/images/defaultProfilePic.png'} alt='' />
+            }
             <span>profile</span>
           </Link>
         </div>

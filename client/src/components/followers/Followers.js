@@ -59,7 +59,10 @@ const Followers = () => {
           return (
             <div key={follower.userId} className="item">
               <Link to={`/profile/${follower.userId}`} >
-                {follower.profilePic !== null && <img src={imgUrl + follower.profilePic} alt='profile' />}
+                {follower.profilePic !== null ? 
+                  <img src={ imgUrl + follower.profilePic} alt='' /> :
+                  <img src={'/images/defaultProfilePic.png'} alt='' />
+                }
                 <span>{follower.name}</span>
               </Link>
               <button onClick={ () => handleClick(follower.userId)}>{meFollowing.data?.includes(follower.userId) ? "unfollow" : "follow"}</button>

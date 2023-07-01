@@ -68,7 +68,10 @@ const Friends = () => {
           return (
             <div key={friend.userId} className="item">
               <Link to={`/profile/${friend.userId}`} >
-                {friend.profilePic !== null && <img src={imgUrl + friend.profilePic} />}
+                {friend.profilePic !== null ? 
+                  <img src={ imgUrl + friend.profilePic} alt='' /> :
+                  <img src={'/images/defaultProfilePic.png'} alt='' />
+                }
                 <span>{friend.name}</span>
               </Link>
               <button onClick={ () => handleUnFollow(friend.userId)}>unfollow</button>
@@ -84,7 +87,10 @@ const Friends = () => {
             return (
               <div key={user.userId} className='item'>
                 <Link to={`/profile/${user.userId}`}>
-                  {user.profilePic !== null && <img src={imgUrl + user.profilePic} />}
+                  {user.profilePic !== null ? 
+                    <img src={ imgUrl + user.profilePic} alt='' /> :
+                    <img src={'/images/defaultProfilePic.png'} alt='' />
+                  }
                   <span>{user.name}</span>
                 </Link>
                 <button onClick={ () => handleFollow(user.userId)}>follow</button>

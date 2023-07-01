@@ -56,7 +56,10 @@ const SharePost = () => {
         <div className='top'>
             <div className='left'>
                 <div className='type-something'>
-                    {currentUser.profilePic !== null && <img src={imgUrl + currentUser.profilePic} alt='' />}
+                    {currentUser.profilePic !== null ? 
+                    <img src={ imgUrl + currentUser.profilePic} alt='' /> :
+                    <img src={'/images/defaultProfilePic.png'} alt='' />
+                    }
                     <input type='text' placeholder={`type your post ${currentUser.name}`} onChange={ e=> setDescn(e.target.value) } value={descn} />
                 </div>
             </div>

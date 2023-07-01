@@ -69,8 +69,14 @@ const handleFollow = async () => {
     profileUser.isLoading ? "loading..." :
     ( <div className='profile'>
         <div className='images'>
-          {profileUser.data.coverPic !== null && <img src={imgUrl + profileUser.data.coverPic} alt='cover' className='cover' />}
-          {profileUser.data.profilePic !== null && <img src={imgUrl + profileUser.data.profilePic} alt='profile' className='profilePic' />}
+          {profileUser.data.coverPic !== null ? 
+          <img src={ imgUrl + profileUser.data.coverPic} alt='' className='cover' /> :
+          <img src={'/images/cover.png'} alt='' className='cover' />
+          }
+          {profileUser.data.profilePic !== null ? 
+          <img src={ imgUrl + profileUser.data.profilePic} alt='' className='profilePic' /> :
+          <img src={'/images/defaultProfilePic.png'} alt='' className='profilePic' />
+          }
         </div>
         <div className='profileContainer'>
           <div className='userInfo'>

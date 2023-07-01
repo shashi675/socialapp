@@ -74,8 +74,14 @@ const UpdateProfile = () => {
     return (
         <div className='updateProf'>
             <div className='image'>
-                {currentUser?.coverPic !== null && <img src={imgUrl + currentUser.coverPic} alt='cover' className='cover' />}
-                {currentUser.profilePic !== null && <img src={imgUrl + currentUser.profilePic} alt='profile' className='profilePic' />}
+                {currentUser.coverPic !== null ? 
+                <img src={ imgUrl + currentUser.coverPic} alt='' className='cover' /> :
+                <img src={'/images/cover.png'} alt='' className='cover' />
+                }
+                {currentUser.profilePic !== null ? 
+                <img src={ imgUrl + currentUser.profilePic} alt='' className='profilePic' /> :
+                <img src={'/images/defaultProfilePic.png'} alt='' className='profilePic' />
+                }
             </div>
             <div className='profile-container'>
                 <div className='userName'>user name: <strong>{currentUser.userName}</strong></div>

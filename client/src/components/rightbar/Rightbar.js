@@ -50,7 +50,10 @@ const Rightbar = () => {
                 return (
                   <div className='user' key={userInfo.userId}>
                     <div className='userInfo'>
-                      {userInfo.profilePic !== null && <img src={imgUrl + userInfo.profilePic} alt='' />}
+                      {userInfo.profilePic !== null ? 
+                        <img src={ imgUrl + userInfo.profilePic} alt='' /> :
+                        <img src={'/images/defaultProfilePic.png'} alt='' />
+                      }
                       <Link to={`/profile/${userInfo.userId}`} style={{ textDecoration: "none", color: "inherit"}}>
                           <span className='name'>
                               {userInfo.name}
