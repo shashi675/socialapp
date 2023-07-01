@@ -39,7 +39,7 @@ const Login = () => {
                 <input type='text' placeholder='username' name='userName' onChange={handleChange} />
                 <input type='password' placeholder='password' name='password' onChange={handleChange} />
                 {error && error}
-                {isLoading && "please wait"}
+                {!error && isLoading && "please wait"}
                 <button onClick={ handleLogin }>Login</button>
                 <div>
                     <span>don't have an accont?</span>
