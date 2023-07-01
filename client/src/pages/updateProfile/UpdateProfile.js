@@ -87,15 +87,15 @@ const UpdateProfile = () => {
                 <div className='userName'>user name: <strong>{currentUser.userName}</strong></div>
                 <div>
                     <label htmlFor="name">Name:</label>
-                    <input id="name" name='name' type="text" onChange={handleChange} value={values.name} />
+                    <input id="name" name='name' autoComplete='off' type="text" onChange={handleChange} value={values.name} />
                 </div>
                 <div>
                     <label htmlFor="city">City:</label>
-                    <input id="city" name='city' type="text" onChange={handleChange} value={values.city} />
+                    <input id="city" name='city' autoComplete='off' type="text" onChange={handleChange} value={values.city} />
                 </div>
                 <div>
                     <label htmlFor="language">Language:</label>
-                    <input id="language" name='language' type="text" onChange={handleChange} value={values.language} />
+                    <input id="language" name='language' autoComplete='off' type="text" onChange={handleChange} value={values.language} />
                 </div>
                 <div>
                     <label htmlFor="profilePic">Profile Photo</label>
