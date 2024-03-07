@@ -25,6 +25,9 @@ const ForgotPass = () => {
 
     const handleChangeI = e => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+        setError(null);
+        setMessage(null);
+        setIsLoading(false);
     }
 
 
