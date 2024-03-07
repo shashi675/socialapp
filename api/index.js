@@ -45,24 +45,24 @@ app.use((req, res, next) => {
     // });
 
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads');
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + file.originalname);
-    }
-})
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, 'uploads');
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, Date.now() + file.originalname);
+//     }
+// })
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
-app.post("/api/upload", upload.single("file"), (req, res) => {
-    const file = req.file;
-    res.status(200).json(file.filename);
-})
+// app.post("/api/upload", upload.single("file"), (req, res) => {
+//     const file = req.file;
+//     res.status(200).json(file.filename);
+// })
 
 
-app.use('/uploads', express.static('uploads'));
+// app.use('/uploads', express.static('uploads'));
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);

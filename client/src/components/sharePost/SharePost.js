@@ -12,7 +12,7 @@ const SharePost = () => {
     const url = process.env.REACT_APP_BACKEND_URL;
     const { currentUser } = useContext(AuthContext);
 
-    const [file, setFile] = useState(null);
+    // const [file, setFile] = useState(null);
     const [descn, setDescn] = useState("");
 
     const queryClient = useQueryClient();
@@ -26,29 +26,29 @@ const SharePost = () => {
         },
     })
 
-    const upload = async () => {
-        try {
-            const formData = new FormData();
-            formData.append("file", file);
+    // const upload = async () => {
+    //     try {
+    //         const formData = new FormData();
+    //         formData.append("file", file);
 
-            const res = await axios.post(url + "/upload", formData);
-            return res.data;
-        } catch(err) {
-            console.log(err);
-        }
-    }
+    //         const res = await axios.post(url + "/upload", formData);
+    //         return res.data;
+    //     } catch(err) {
+    //         console.log(err);
+    //     }
+    // }
 
     const hadnleClick = async (e) => {
         e.preventDefault();
-        let imgUrl = "";
-        if(file) imgUrl = await upload();
+        // let imgUrl = "";
+        // if(file) imgUrl = await upload();
         mutation.mutate({ 
             "token": currentUser.token,
             descn,
-            "img": imgUrl
+            // "img": imgUrl
         });
         setDescn("");
-        setFile(null);
+        // setFile(null);
     }
 
   return (
