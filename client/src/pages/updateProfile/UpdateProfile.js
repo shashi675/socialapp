@@ -97,14 +97,14 @@ const UpdateProfile = () => {
                     <label htmlFor="language">Language:</label>
                     <input id="language" name='language' autoComplete='off' type="text" onChange={handleChange} value={values.language} />
                 </div>
-                <div>
+                {/* <div>
                     <label htmlFor="profilePic">Profile Photo</label>
                     <input id="profilePic" type="file" onChange={ e => setProfilePic(e.target.files[0])} />
                 </div>
                 <div>
                     <label htmlFor="coverPic">Cover Photo</label>
                     <input id="coverPic" type="file" onChange={ e => setCoverPic(e.target.files[0])} />
-                </div>
+                </div> */}
                 <button onClick={ handleClick }>update</button>
             </div>
         </div>

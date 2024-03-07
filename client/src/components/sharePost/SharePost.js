@@ -64,7 +64,7 @@ const SharePost = () => {
                 </div>
             </div>
             <div className='right'>
-                {file && <img className='file-image' src={URL.createObjectURL(file)} alt='' />}
+                {/* {file && <img className='file-image' src={URL.createObjectURL(file)} alt='' />} */}
             </div>
         </div>
         <hr />
@@ -72,9 +72,9 @@ const SharePost = () => {
             <div className='addImage'>
                 <div className='image'>
                     <label htmlFor='postImg'>
-                        <input type='file' name='postImg' id='postImg' style={{display: "none"}} onChange={ e=> setFile(e.target.files[0]) } />
+                        {/* <input type='file' name='postImg' id='postImg' style={{display: "none"}} onChange={ e=> setFile(e.target.files[0]) } />
                         <AddPhotoAlternateOutlinedIcon />
-                        <span>Add image  (only one image)</span>
+                        <span>Add image  (only one image)</span> */}
                     </label>
                 </div>
             </div>

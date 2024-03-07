@@ -12,13 +12,14 @@ const Login = () => {
     });
 
     const [error, setError] = useState(null);
+    const { login, isLoading, setIsLoading } = useContext(AuthContext);
 
     const handleChange = e => {
         setError(null);
+        setIsLoading(false);
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
 
-    const { login, isLoading } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
