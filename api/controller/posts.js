@@ -33,10 +33,10 @@ const addPost = (req, res) => {
     jwt.verify(token, process.env.secretKey, (err, userInfo) => {
         if(err) return res.status(403).json("token not valid");
 
-        const q = "INSERT INTO posts (`descn`, `img`, `postUId`, `createdAt`) VALUES (?)";
+        const q = "INSERT INTO posts (`descn`, `postUId`, `createdAt`) VALUES (?)";
         const values = [
             req.body.descn,
-            req.body.img,
+            // req.body.img,
             userInfo.id,
             moment().format("YYYY-MM-DD HH:mm:ss")
         ]
