@@ -7,8 +7,8 @@ import { AuthContext } from '../../context/authContext';
 const Login = () => {
 
     const [inputs, setInputs] = useState({
-        userName: "",
-        password: ""
+        userName: "sk",
+        password: "12345"
     });
 
     const [error, setError] = useState(null);
@@ -38,8 +38,8 @@ const Login = () => {
         <div className='card'>
             <h1>Login</h1>
             <form>
-                <input type='text' placeholder='username' autoComplete='off' name='userName' onChange={handleChange} />
-                <input type='password' autoComplete='off' placeholder='password' name='password' onChange={handleChange} />
+                <input type='text' value={inputs.userName} placeholder='username' autoComplete='off' name='userName' onChange={handleChange} />
+                <input type='password' value={inputs.password} autoComplete='off' placeholder='password' name='password' onChange={handleChange} />
                 {error && error}
                 {!error && isLoading && "please wait"}
                 <button onClick={ handleLogin }>Login</button>
