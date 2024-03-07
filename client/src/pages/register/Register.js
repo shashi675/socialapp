@@ -21,6 +21,8 @@ const Register = () => {
   const handleChange = e => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     setMessage(null);
+    setError(null);
+    setIsLoading(false);
   }
 
   const handleClick = async e => {
